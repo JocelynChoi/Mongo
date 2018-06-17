@@ -1,0 +1,45 @@
+<div id="wrapper">
+      <h1>Note Scraper</h1>
+      <h2><i>If you can do this...the homework should be no problem.</i></h2>
+      <div id="articles"></div>
+      <div id="notes"></div>
+    </div>
+
+<ul>
+  {{#each burgers}}
+    {{#if devoured}}
+      <li>{{burgername}}</p></li>
+    {{/if}}
+  {{/each}}
+</ul>
+
+  
+
+  <h3>Click the "Submit" Button</h3>
+
+  
+
+  <button type="save">Save</button>
+  <button type="delete">Delete</button>
+</form>
+
+
+<script>
+    $(document).ready(function(){
+       $(document).on('click',"#devoure",function(){
+           console.log(this.value);
+           var row = parseInt(this.value);
+           $.post("/devour_a_burger",{row},function(data,status){
+                console.log('successful devour!' + data + status);
+            })
+       }) 
+    //add a burg 
+     $(document).on('click',"#add",function(){
+        var val =  $('#burgerName').val().trim();
+           console.log(val);
+           $.post("/add_a_burger",{val},function(data,status){
+                console.log('successful devour!' + data + status);
+            })
+       }) 
+    });
+</script>
